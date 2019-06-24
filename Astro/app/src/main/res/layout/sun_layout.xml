@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- _______________ SUN _______________ -->
+
+    <TextView
+        android:id="@+id/SUN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+
+        android:text="— SUN☀—"
+        android:textColor="#FFD429"
+        android:textSize="45sp" />
+
+    <!-- _______________ CURRENT TIME, SUNSET, TWILIGHT_______________ -->
+
+    <!-- +++++ CURRENT TIME +++++ -->
+    <TextView
+        android:id="@+id/sun_CURRENT_TIME"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+
+        android:text="— Current Time —"
+        android:textColor="#0009B3" />
+
+    <TextView
+        android:id="@+id/sun_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sun_CURRENT_TIME"
+
+        android:text="@string/initial_value"
+        android:textColor="#2933FF" />
+
+    <!-- +++++ DUSK +++++ -->
+    <TextView
+        android:id="@+id/sun_DUSK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="110dp"
+
+        android:text="— Dusk"
+        android:textColor="#0009B3" />
+
+    <TextView
+        android:id="@+id/sun_dusk_time"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="50dp"
+        android:layout_below="@+id/sun_DUSK"
+
+        android:text="@string/initial_value"
+        android:textColor="#2933FF" />
+
+    <!-- +++++ TWILIGHT +++++ -->
+    <TextView
+        android:id="@+id/sun_TWILIGHT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="110dp"
+
+        android:text="Twilight —"
+        android:textColor="#0009B3" />
+
+    <TextView
+        android:id="@+id/sun_twilight_time"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:layout_below="@+id/sun_TWILIGHT"
+
+        android:text="@string/initial_value"
+        android:textAlignment="textEnd"
+        android:textColor="#2933FF" />
+
+
+    <!-- _______________ GEOGRAPHICAL COORDINATES _______________ -->
+
+    <TextView
+        android:id="@+id/sun_GEOGRAPHICAL_COORDINATES"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+
+        android:text="— Geographical coordinates —" />
+
+    <!-- +++++ LATITUDE +++++ -->
+    <TextView
+        android:id="@+id/sun_LATITUDE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="50dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/sun_GEOGRAPHICAL_COORDINATES"
+
+        android:text="Latitude" />
+
+    <TextView
+        android:id="@+id/sun_latitude"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sun_LATITUDE"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+
+        android:text="@string/initial_value"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <!-- +++++ LONGITUDE +++++ -->
+    <TextView
+        android:id="@+id/sun_LONGITUDE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/sun_GEOGRAPHICAL_COORDINATES"
+
+        android:text="Longitude" />
+
+    <TextView
+        android:id="@+id/sun_longitude"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sun_LATITUDE"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"
+
+        android:text="@string/initial_value"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <!-- _______________ BUTTON _______________ -->
+
+    <!-- _______________ SUNSET AND SUNRISE _______________ -->
+
+    <TextView
+        android:id="@+id/sun_AT_TIME"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="95dp"
+        android:layout_centerHorizontal="true"
+
+        android:text="👈 time 👉" />
+
+    <TextView
+        android:id="@+id/sun_at_azimuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_centerHorizontal="true"
+
+        android:textAlignment="center"
+        android:text="👈   azimuth   👉" />
+
+    <!-- +++++ SUNRISE +++++ -->
+    <TextView
+        android:id="@+id/sun_SUNRISE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="130dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+
+        android:textSize="20sp"
+        android:text="Sunrise" />
+
+    <TextView
+        android:id="@+id/sun_sunrise_time"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="95dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="60dp"
+
+        android:text="@string/initial_value"
+        android:textColor="#2933FF"/>
+
+    <TextView
+        android:id="@+id/sun_sunrise_azimuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+
+        android:text="@string/initial_value"
+        android:textColor="#29AAFF"/>
+
+    <!-- +++++ SUNSET +++++ -->
+    <TextView
+        android:id="@+id/sun_SUNSET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="130dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+
+        android:textSize="20sp"
+        android:text="Sunset" />
+
+    <TextView
+        android:id="@+id/sun_sunset_time"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="95dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="60dp"
+
+        android:text="@string/initial_value"
+        android:textAlignment="textEnd"
+        android:textColor="#2933FF"/>
+
+    <TextView
+        android:id="@+id/sun_sunset_azimuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="55dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"
+
+        android:text="@string/initial_value"
+        android:textColor="#29AAFF"/>
+
+
+</RelativeLayout>

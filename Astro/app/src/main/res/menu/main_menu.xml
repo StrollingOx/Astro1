@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.anon.astro.MainActivity">
+    <item
+        android:id="@+id/setting_geolocation"
+        android:title="Change geolocation"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/setting_refresh_time"
+        android:title="Set app refresh time"
+        app:showAsAction="never" />
+</menu>

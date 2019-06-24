@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#757575">
+
+
+    <!-- _______________ MOON _______________ -->
+
+    <TextView
+        android:id="@+id/MOON"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+
+        android:text="— MOON🌓—"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp" />
+
+    <!-- _______________ CURRENT TIME, MOONRISE, MOONSET _______________ -->
+
+    <!-- +++++ CURRENT TIME +++++ -->
+    <TextView
+        android:id="@+id/moon_CURRENT_TIME"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/MOON"
+        android:layout_marginTop="20dp"
+
+        android:text="— Current Time —"
+        android:textColor="#0009B3"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/moon_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/moon_CURRENT_TIME"
+
+        android:text="@string/initial_value"
+        android:textColor="#5EFFBA"
+        android:textSize="20sp" />
+
+    <!-- +++++ MOONRISE +++++ -->
+    <TextView
+        android:id="@+id/moon_MOONRISE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_below="@id/moon_CURRENT_TIME"
+
+        android:text="— Moonrise"
+        android:textColor="#0009B3"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/moon_moonrise_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="50dp"
+        android:layout_below="@+id/moon_MOONRISE"
+
+        android:text="@string/initial_value"
+        android:textColor="#5EFFBA"
+        android:textSize="20sp"/>
+
+    <!-- +++++ MOONSET +++++ -->
+    <TextView
+        android:id="@+id/moon_MOONSET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+        android:layout_below="@id/moon_CURRENT_TIME"
+
+        android:text="Moonset —"
+        android:textColor="#0009B3"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/moon_moonset_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/moon_MOONSET"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+
+        android:layout_marginEnd="50dp"
+        android:text="@string/initial_value"
+        android:textAlignment="textEnd"
+        android:textColor="#5EFFBA"
+        android:textSize="20sp" />
+
+
+    <!-- _______________ GEOGRAPHICAL COORDINATES _______________ -->
+
+    <TextView
+        android:id="@+id/moon_GEOGRAPHICAL_COORDINATES"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/moon_CURRENT_TIME"
+        android:layout_marginTop="100dp"
+
+        android:textColor="#FFFFFF"
+        android:text="— Geographical coordinates —"
+        android:textSize="30sp" />
+
+    <!-- +++++ LATITUDE +++++ -->
+    <TextView
+        android:id="@+id/moon_LATITUDE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="50dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/moon_GEOGRAPHICAL_COORDINATES"
+
+        android:textColor="#FFFFFF"
+        android:text="Latitude"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/moon_latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/moon_LATITUDE"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+
+        android:text="@string/initial_value"
+        android:textColor="#000000"
+        android:textSize="25sp" />
+
+    <!-- +++++ LONGITUDE +++++ -->
+    <TextView
+        android:id="@+id/moon_LONGITUDE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/moon_GEOGRAPHICAL_COORDINATES"
+
+        android:textColor="#FFFFFF"
+        android:text="Longitude"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/moon_longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/moon_LATITUDE"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"
+
+        android:text="@string/initial_value"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="25sp" />
+
+    <!-- _______________ BUTTON _______________ -->
+
+    <!-- _______________ SUNSET AND SUNRISE _______________ -->
+
+    <!-- +++++ FLAVOUR TEXTS +++++ -->
+    <TextView
+        android:id="@+id/moon_NEW_MOON"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_toStartOf="@+id/moon_SEPARATOR"
+
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:text="New moon  "
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/moon_SEPARATOR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="45dp"
+        android:layout_centerHorizontal="true"
+
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:text="|"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/moon_FULL_MOON"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@+id/moon_SEPARATOR"
+
+        android:textAlignment="center"
+        android:text="  Full moon"
+        android:textSize="25sp" />
+
+    <!-- +++++ PHASE +++++ -->
+    <TextView
+        android:id="@+id/moon_PHASE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/moon_GEOGRAPHICAL_COORDINATES"
+        android:layout_marginTop="130dp"
+        android:layout_marginStart="95dp"
+
+
+        android:textAlignment="center"
+        android:textColor="#CCCCCC"
+        android:textSize="25sp"
+        android:text="🌙 phase   :" />
+
+    <TextView
+        android:id="@+id/moon_phase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/moon_GEOGRAPHICAL_COORDINATES"
+        android:layout_marginTop="130dp"
+        android:layout_toEndOf="@id/moon_PHASE"
+        android:layout_marginStart="40dp"
+
+
+        android:textAlignment="textEnd"
+        android:textColor="#5EFFBA"
+        android:text="@string/initial_value"
+        android:textSize="25sp"/>
+
+    <!-- +++++ SYNODIC MONTH DAY +++++ -->
+    <TextView
+        android:id="@+id/moon_SMD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/moon_GEOGRAPHICAL_COORDINATES"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="182dp"
+
+        android:text="🌙 day  :"
+
+        android:textAlignment="center"
+        android:textColor="#CCCCCC"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/moon_smd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/moon_GEOGRAPHICAL_COORDINATES"
+        android:layout_marginTop="180dp"
+        android:layout_toEndOf="@+id/moon_SMD"
+        android:layout_marginStart="40dp"
+
+
+        android:textAlignment="textStart"
+        android:textColor="#5EFFBA"
+        android:text="@string/initial_value"
+        android:textSize="25sp"/>
+
+    <!-- +++++ NEW MOON +++++ -->
+    <TextView
+        android:id="@+id/moon_NEW_MOON_EMOJI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="85dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="60dp"
+
+        android:textSize="42sp"
+        android:textColor="#BFC1C2"
+        android:text="🌕" />
+
+    <TextView
+        android:id="@+id/moon_new_moon_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+
+        android:text="@string/initial_value"
+        android:textColor="#BFC1C2"
+        android:textSize="30sp"/>
+
+    <!-- +++++ FULL MOON +++++ -->
+    <TextView
+        android:id="@+id/moon_FULL_MOON_EMOJI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="85dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="60dp"
+
+        android:textSize="42sp"
+        android:text="🌑" />
+
+    <TextView
+        android:id="@+id/moon_full_moon_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+
+        android:text="@string/initial_value"
+        android:textSize="30sp"/>
+
+
+</RelativeLayout>
