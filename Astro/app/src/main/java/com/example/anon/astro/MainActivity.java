@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         isTablet = getResources().getBoolean(R.bool.isTablet);
-        System.out.println(isTablet);
 
         //toolbar
         initToolbar();
@@ -110,35 +109,8 @@ public class MainActivity extends AppCompatActivity{
 
     private void handleDeviceOrientation() {
         int orientation = getResources().getConfiguration().orientation;
-        FragmentManager manager;
-        FragmentSun fragmentSun;
-        FragmentMoon fragmentMoon;
 
-        if(orientation == Configuration.ORIENTATION_LANDSCAPE && isTablet) {
-            manager = getSupportFragmentManager();
-            fragmentSun = new FragmentSun();
-            fragmentMoon = new FragmentMoon();
-
-            manager.beginTransaction().replace(R.id.layout_sun, fragmentSun, fragmentSun.getTag()).commit();
-            manager.beginTransaction().replace(R.id.layout_moon, fragmentMoon, fragmentMoon.getTag()).commit();
-
-        } else if (orientation == Configuration.ORIENTATION_PORTRAIT && isTablet) {
-            manager = getSupportFragmentManager();
-            fragmentSun = new FragmentSun();
-            fragmentMoon = new FragmentMoon();
-
-            manager.beginTransaction().replace(R.id.layout_sun, fragmentSun, fragmentSun.getTag()).commit();
-            manager.beginTransaction().replace(R.id.layout_moon, fragmentMoon, fragmentMoon.getTag()).commit();
-
-        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            manager = getSupportFragmentManager();
-            fragmentSun = new FragmentSun();
-            fragmentMoon = new FragmentMoon();
-
-            manager.beginTransaction().replace(R.id.layout_sun, fragmentSun, fragmentSun.getTag()).commit();
-            manager.beginTransaction().replace(R.id.layout_moon, fragmentMoon, fragmentMoon.getTag()).commit();
-
-        }  else if (orientation != Configuration.ORIENTATION_LANDSCAPE){
+         if (orientation == Configuration.ORIENTATION_PORTRAIT && !isTablet){
 
             //tabLayout
             initTabLayout();
@@ -146,7 +118,14 @@ public class MainActivity extends AppCompatActivity{
             //pager
             initAdapter();
 
-        }
+        } else {
+             FragmentManager manager = getSupportFragmentManager();
+             FragmentSun fragmentSun = new FragmentSun();
+             FragmentMoon fragmentMoon = new FragmentMoon();
+             manager.beginTransaction().replace(R.id.layout_sun, fragmentSun).commit();
+             manager.beginTransaction().replace(R.id.layout_moon, fragmentMoon).commit();
+         }
+
     }
 
 }
