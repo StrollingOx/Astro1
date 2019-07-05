@@ -1,9 +1,8 @@
-package com.example.anon.astro.Fragments;
+package com.example.anon.astro.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.anon.astro.AstroCalc;
 import com.example.anon.astro.AstroDate;

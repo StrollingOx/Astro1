@@ -1,4 +1,4 @@
-package com.example.anon.astro.Fragments;
+package com.example.anon.astro.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

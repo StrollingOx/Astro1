@@ -1,40 +1,49 @@
 package com.example.anon.astro;
 
-import android.annotation.SuppressLint;
 import android.content.res.Configuration;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.example.anon.astro.Adapters.PagerAdapter;
-import com.example.anon.astro.Fragments.DialogGeolocation;
-import com.example.anon.astro.Fragments.DialogRefreshTime;
-import com.example.anon.astro.Fragments.FragmentMoon;
-import com.example.anon.astro.Fragments.FragmentSun;
+import com.example.anon.astro.fragments.FragmentBasicData;
+import com.example.anon.astro.tools.PagerAdapter;
+import com.example.anon.astro.fragments.DialogGeolocation;
+import com.example.anon.astro.fragments.DialogRefreshTime;
+import com.example.anon.astro.weather.CityWeather;
+import com.example.anon.astro.weather.CityWeatherController;
 
 public class MainActivity extends AppCompatActivity{
 
     private PagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
-    private boolean isTablet;
+
+    private CityWeatherController cityWeatherController;
+    private CityWeather cityWeather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Permission.verifyStoragePermissions(this);
 
-        isTablet = getResources().getBoolean(R.bool.isTablet);
-
-        //toolbar
+        initWeatherController();
+        setDefaultCityTEST();
         initToolbar();
-
-        //orientation handle
         handleDeviceOrientation();
+    }
+
+    private void setDefaultCityTEST() {
+        cityWeatherController.addCityByName("Zgierz");
+        cityWeather = cityWeatherController.getCurrentCityWeather("Zgierz");
+        FragmentBasicData.setCityWeather(cityWeather);
+    }
+
+    private void initWeatherController() {
+        cityWeatherController = new CityWeatherController(this);
     }
 
     private void initToolbar() {
@@ -67,29 +76,37 @@ public class MainActivity extends AppCompatActivity{
             case R.id.setting_refresh_time:
                 openRefreshTimeSetting();
                 return true;
+            case R.id.setting_refresh_weather:
+                refreshWeatherData();
+                return true;
             default:
                 return false;
         }
+    }
+
+    private void refreshWeatherData() {
+        Toast.makeText(this,"NOT YET IMPLEMENTED", Toast.LENGTH_SHORT).show();
     }
 
 
     private void handleDeviceOrientation() {
         int orientation = getResources().getConfiguration().orientation;
 
-         if (/*orientation == Configuration.ORIENTATION_PORTRAIT && */!isTablet){
-
+         if (isPhone()){
              mViewPager = (ViewPager)findViewById(R.id.pager);
              mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), orientation);
              mViewPager.setAdapter(mPagerAdapter);
-
-        } else {
-             FragmentManager manager = getSupportFragmentManager();
-             FragmentSun fragmentSun = new FragmentSun();
-             FragmentMoon fragmentMoon = new FragmentMoon();
-             manager.beginTransaction().replace(R.id.layout_sun, fragmentSun).commit();
-             manager.beginTransaction().replace(R.id.layout_moon, fragmentMoon).commit();
+         } else {
+              // USE TABLET LAYOUT!
          }
 
+    }
+
+    private boolean isPhone() {
+        return (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT
+                && getResources().getConfiguration().screenWidthDp < 720)
+                || (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
+                && getResources().getConfiguration().screenHeightDp < 720);
     }
 
 }

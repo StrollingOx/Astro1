@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/layout_item_favcity"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp">
+
+        <ImageView
+            android:id="@+id/eaten_product_index_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_item" />
+
+        <TextView
+            android:id="@+id/fc_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/delete_eaten_product"
+            android:layout_marginStart="1dp"
+
+            android:layout_marginTop="7dp"
+            android:layout_toEndOf="@+id/eaten_product_index_image"
+            android:text="CITY NAME"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/delete_eaten_product"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_delete" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fc_item_name"
+            android:layout_alignBottom="@+id/delete_eaten_product"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="-5dp"
+            android:layout_toEndOf="@+id/eaten_product_index_image"
+            android:text="-- -- -- --" />
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
+<!--<RelativeLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/layout_item_favcity">-->
+
+
+    <!--<ImageView-->
+        <!--android:id="@+id/eaten_product_index_image"-->
+        <!--android:layout_width="60dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:src="@drawable/ic_item"/>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/eaten_product_name"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="PRODUCT NAME"-->
+        <!--android:layout_toRightOf="@+id/eaten_product_index_image"-->
+        <!--android:layout_centerVertical="true"-->
+
+        <!--android:textSize="20sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textColor="@android:color/black"/>-->
+
+    <!--<ImageView-->
+        <!--android:id="@+id/delete_eaten_product"-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginEnd="20dp"-->
+        <!--android:src="@drawable/ic_delete" />-->
+
+
+<!--</RelativeLayout>-->

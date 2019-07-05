@@ -1,4 +1,4 @@
-package com.example.anon.astro.Fragments;
+package com.example.anon.astro.fragments;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

@@ -1,15 +1,15 @@
-package com.example.anon.astro.Adapters;
+package com.example.anon.astro.tools;
 
 import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.anon.astro.Fragments.FragmentAdditionalData;
-import com.example.anon.astro.Fragments.FragmentBasicData;
-import com.example.anon.astro.Fragments.FragmentForecast;
-import com.example.anon.astro.Fragments.FragmentMoon;
-import com.example.anon.astro.Fragments.FragmentSun;
+import com.example.anon.astro.fragments.FragmentAdditionalData;
+import com.example.anon.astro.fragments.FragmentBasicData;
+import com.example.anon.astro.fragments.FragmentForecast;
+import com.example.anon.astro.fragments.FragmentMoon;
+import com.example.anon.astro.fragments.FragmentSun;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
