@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity{
 
     private PagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
-    private TabLayout tabLayout;
     private boolean isTablet;
 
     @Override
@@ -38,42 +37,9 @@ public class MainActivity extends AppCompatActivity{
         handleDeviceOrientation();
     }
 
-    private void initTabLayout() {
-        tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Sun"));
-        tabLayout.addTab(tabLayout.newTab().setText("Moon"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-    }
-
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-    }
-
-    private void initAdapter() {
-        mViewPager = (ViewPager)findViewById(R.id.pager);
-
-        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        mViewPager.setAdapter(mPagerAdapter);
-        mViewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mViewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
     }
 
     private void openGeolocationSetting(){
@@ -110,13 +76,11 @@ public class MainActivity extends AppCompatActivity{
     private void handleDeviceOrientation() {
         int orientation = getResources().getConfiguration().orientation;
 
-         if (orientation == Configuration.ORIENTATION_PORTRAIT && !isTablet){
+         if (/*orientation == Configuration.ORIENTATION_PORTRAIT && */!isTablet){
 
-            //tabLayout
-            initTabLayout();
-
-            //pager
-            initAdapter();
+             mViewPager = (ViewPager)findViewById(R.id.pager);
+             mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), orientation);
+             mViewPager.setAdapter(mPagerAdapter);
 
         } else {
              FragmentManager manager = getSupportFragmentManager();
