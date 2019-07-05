@@ -14,7 +14,7 @@
         android:layout_margin="4dp">
 
         <ImageView
-            android:id="@+id/eaten_product_index_image"
+            android:id="@+id/pointer_city"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_item" />
@@ -23,18 +23,18 @@
             android:id="@+id/fc_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/delete_eaten_product"
+            android:layout_alignTop="@+id/fc_item_delete_city"
             android:layout_marginStart="1dp"
 
             android:layout_marginTop="7dp"
-            android:layout_toEndOf="@+id/eaten_product_index_image"
+            android:layout_toEndOf="@+id/pointer_city"
             android:text="CITY NAME"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/delete_eaten_product"
+            android:id="@+id/fc_item_delete_city"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
@@ -46,11 +46,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/fc_item_name"
-            android:layout_alignBottom="@+id/delete_eaten_product"
+            android:layout_alignBottom="@+id/fc_item_delete_city"
             android:layout_marginStart="10dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="-5dp"
-            android:layout_toEndOf="@+id/eaten_product_index_image"
+            android:layout_toEndOf="@+id/pointer_city"
             android:text="-- -- -- --" />
     </RelativeLayout>
 
@@ -61,7 +61,7 @@
     <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/layout_item_favcity">-->
+    <!--android:id="@+id/fav_cities_item_layout">-->
 
 
     <!--<ImageView-->

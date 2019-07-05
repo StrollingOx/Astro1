@@ -21,7 +21,6 @@ public class CityWeatherDatabaseConnection {
 
     public CityWeatherDatabaseConnection(Context context) {
         this.db = new DatabaseHelper(context);
-        //this.db.onCreate(db.getWritableDatabase());
     }
 
     public boolean addCity(String cityName, String json, String json5d) throws AlreadyInDatabaseException {
@@ -65,7 +64,7 @@ public class CityWeatherDatabaseConnection {
         return cursor.getString(0);
     }
 
-    public String getWeatherForCityForFiveDays(String cityName){
+    public String getForecastForCity(String cityName){
         SQLiteDatabase database = db.getReadableDatabase();
 
         String[]columns = {COLUMN_JASON_5DFORECAST_NAME};
@@ -88,22 +87,6 @@ public class CityWeatherDatabaseConnection {
         return cursor.getString(0);
     }
 
-    public List<String> getCities() {
-        SQLiteDatabase database = db.getReadableDatabase();
-        List<String> cities = new LinkedList<String>();
-
-        Cursor cursor = database.rawQuery(
-                "SELECT " + COLUMN_CITY_NAME_NAME + " FROM " + TABLE_NAME, null);
-        cursor.moveToFirst();
-
-        do {
-            cities.add(cursor.getString(0));
-        }
-        while (cursor.moveToNext());
-        cursor.close();
-        return cities;
-    }
-
     public boolean deleteCity(String cityName) {
         SQLiteDatabase database = db.getWritableDatabase();
         String selection = COLUMN_CITY_NAME_NAME + " LIKE ?";
@@ -111,20 +94,4 @@ public class CityWeatherDatabaseConnection {
         return database.delete(TABLE_NAME, selection, selectionArgs) > 0;
     }
 
-    public boolean updateWeather(String cityName, String json, String json2) {
-        SQLiteDatabase database = db.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_JASON_NAME, json);
-        values.put(COLUMN_JASON_5DFORECAST_NAME, json2);
-
-        String selection = COLUMN_CITY_NAME_NAME + " LIKE ?";
-        String[] selectionArgs = {cityName};
-
-        int count = database.update(
-                TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count > 0;
-    }
 }

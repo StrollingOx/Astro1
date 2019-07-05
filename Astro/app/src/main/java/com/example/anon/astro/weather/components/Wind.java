@@ -11,7 +11,7 @@ private Double temp;
     private Double speed;
     @SerializedName("deg")
     @Expose
-    private int deg;
+    private Double deg;
 
     public Double getTemp() {
         return temp;
@@ -29,11 +29,11 @@ private Double temp;
         this.speed = speed;
     }
 
-    public int getDeg() {
+    public Double getDeg() {
         return deg;
     }
 
-    public void setDeg(int deg) {
+    public void setDeg(Double deg) {
         this.deg = deg;
     }
 }

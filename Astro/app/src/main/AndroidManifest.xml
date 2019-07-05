@@ -22,6 +22,13 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".SelectCityActivity">
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.anon.astro.MainActivity" />
+        </activity>
+
 
     </application>
 

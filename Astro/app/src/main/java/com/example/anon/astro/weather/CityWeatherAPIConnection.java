@@ -8,6 +8,7 @@ public class CityWeatherAPIConnection {
         return sendRequest(Operation.USING_CITY_NAME, cityName);
     }
 
+    //TODO: NOT YET IMPLEMENTED (getFiveDaysWeatherByCityName)
     public String getFiveDaysWeatherByCityName(String cityName) throws Exception {
         return sendRequest(Operation.GET_FORECAST, cityName);
     }

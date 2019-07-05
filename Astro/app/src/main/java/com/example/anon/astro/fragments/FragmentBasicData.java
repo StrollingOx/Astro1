@@ -49,11 +49,11 @@ public class FragmentBasicData extends Fragment {
             tvPlace.setText(cityWeather.getName());
             tvLongitude.setText(cityWeather.getCoord().getLon().toString());
             tvLatitude.setText(cityWeather.getCoord().getLat().toString());
-            tvTemperature.setText(cityWeather.getMain().getTemp().toString());
-            tvPressure.setText(cityWeather.getMain().getPressure() + "hPa");
+            tvTemperature.setText(cityWeather.getMain().getTemp().toString()+ " °K");
+            tvPressure.setText(cityWeather.getMain().getPressure() + " hPa");
             tvDescription.setText(cityWeather.getWeather().get(0).getDescription());
         }else{
-            System.out.println("CITYWEATHER == NULL");
+            System.out.println("(FragmentBasicData)CITYWEATHER == NULL");
         }
     }
 
