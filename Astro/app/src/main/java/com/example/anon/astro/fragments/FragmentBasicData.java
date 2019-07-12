@@ -1,7 +1,9 @@
 package com.example.anon.astro.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -49,7 +51,7 @@ public class FragmentBasicData extends Fragment {
             tvPlace.setText(cityWeather.getName());
             tvLongitude.setText(cityWeather.getCoord().getLon().toString());
             tvLatitude.setText(cityWeather.getCoord().getLat().toString());
-            tvTemperature.setText(cityWeather.getMain().getTemp().toString()+ " °K");
+            tvTemperature.setText(convertUnit(cityWeather.getMain().getTemp().toString()));
             tvPressure.setText(cityWeather.getMain().getPressure() + " hPa");
             tvDescription.setText(cityWeather.getWeather().get(0).getDescription());
         }else{
@@ -59,5 +61,13 @@ public class FragmentBasicData extends Fragment {
 
     public static void setCityWeather(CityWeather cityWeather) {
         FragmentBasicData.cityWeather = cityWeather;
+    }
+
+    private String convertUnit(String temp){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if(preferences.getString("units", "0").equals("0")){
+            return Math.round(Double.parseDouble(temp)-273.15) + " °C";
+        }
+        return temp + " °K";
     }
 }

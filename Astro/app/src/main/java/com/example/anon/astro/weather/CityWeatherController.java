@@ -67,5 +67,38 @@ public class CityWeatherController {
             Log.d("Info", CitySerializer.cityNameSerializer(json) + "already in database");
         }
     }
+    ///////////////////////////
+    ///////////////////////////
+
+    public List<String> getCitiesList() {
+        updateCityList();
+        return cities;
+    }
+
+    public void deleteCity(String cityName) {
+        databaseConnection.deleteCity(cityName);
+        updateCityList();
+    }
+
+    public void setCityEntity(){
+        cities = databaseConnection.getCities();
+    }
+
+    public boolean updateData() {
+        String cityName = "";
+        for (String s : cities) {
+            try {
+                databaseConnection.updateWeather(s, apiConnection.getTodayWeatherByCityName(s),apiConnection.getFiveDaysWeatherByCityName(s));
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void updateCityList() {
+        cities.clear();
+        cities.addAll(databaseConnection.getCities());
+    }
 
 }

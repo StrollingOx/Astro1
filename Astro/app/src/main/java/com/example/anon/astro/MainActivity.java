@@ -1,7 +1,9 @@
 package com.example.anon.astro;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity{
     private CityWeatherController cityWeatherController;
     private CityWeather cityWeather;
     private FiveDayForecast fiveDayForecast;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,26 +45,33 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         Permission.verifyStoragePermissions(this);
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
         initWeatherController();
-        setDefaultCityTEST();
-        initToolbar();
-        handleDeviceOrientation();
+        loadDefaultCity();
 
-        System.out.println(">>>FORECAST TEST<<<");
-        System.out.println("fiveDayForecast.getList().get(0).getDtTxt(): " + fiveDayForecast.getList().get(0).getDtTxt());
-        System.out.println("fiveDayForecast.getList().get(8).getDtTxt(): " + fiveDayForecast.getList().get(8).getDtTxt());
-        System.out.println("fiveDayForecast.getList().get(16).getDtTxt(): " + fiveDayForecast.getList().get(16).getDtTxt());
-        System.out.println("fiveDayForecast.getList().get(24).getDtTxt(): " + fiveDayForecast.getList().get(24).getDtTxt());
-        System.out.println("fiveDayForecast.getList().get(32).getDtTxt(): " + fiveDayForecast.getList().get(32).getDtTxt());
-    }
+        //loadLastCity
+        String city = preferences.getString("lastcity","Warsaw");
+        cityWeather = cityWeatherController.getCurrentCityWeather(city);
+        fiveDayForecast = cityWeatherController.getCurrentCityForecast(city);
 
-    private void setDefaultCityTEST() {
-        cityWeatherController.addCityByName("Zgierz");
-        cityWeather = cityWeatherController.getCurrentCityWeather("Zgierz");
-        fiveDayForecast = cityWeatherController.getCurrentCityForecast("Zgierz");
+        Localization.setLatitude(cityWeather.getCoord().getLat());
+        Localization.setLongitude(cityWeather.getCoord().getLon());
+
         FragmentBasicData.setCityWeather(cityWeather);
         FragmentAdditionalData.setCityWeather(cityWeather);
         FragmentForecast.setFiveDayForecast(fiveDayForecast);
+
+
+
+        initToolbar();
+        handleDeviceOrientation();
+    }
+
+    private void loadDefaultCity() {
+        if (!preferences.contains("lastcity")) {
+            preferences.edit().putString("lastcity","Zgierz").apply();
+            cityWeatherController.addCityByName("Zgierz");
+        }
     }
 
     private void initWeatherController() {

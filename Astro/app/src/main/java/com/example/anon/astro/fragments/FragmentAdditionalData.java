@@ -44,7 +44,10 @@ public class FragmentAdditionalData extends Fragment {
     private void initWeather() {
         if(cityWeather!=null){
             tvWindSpeed.setText(cityWeather.getWind().getSpeed() + " km/h");
-            tvWindDegree.setText(cityWeather.getWind().getDeg() + "°");
+            if(cityWeather.getWind().getDeg() == null)
+                tvWindDegree.setText("0°");
+            else
+                tvWindDegree.setText(cityWeather.getWind().getDeg() + "°");
             tvCloudiness.setText(cityWeather.getClouds().getAll() + "%");
             tvHumidity.setText(cityWeather.getMain().getHumidity()  + "%");
         }else{
