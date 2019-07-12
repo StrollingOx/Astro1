@@ -12,6 +12,10 @@ public class CityWeatherAPIConnection {
         return sendRequest(Operation.GET_FORECAST, cityName);
     }
 
+    public String getCityNameByGeolocation(String geolocation) throws Exception {
+        return sendRequest(Operation.USING_COORDINATES, geolocation);
+    }
+
     private String sendRequest(Operation operation, String value) throws Exception{
         NetworkConnector networkConnector = new NetworkConnector();
         String response = networkConnector.execute(operation,value).get();

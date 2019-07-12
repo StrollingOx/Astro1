@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 class Rain {
+    @SerializedName("1h")
+    @Expose
+    private Double _1h;
+
     @SerializedName("3h")
     @Expose
     private Double _3h;

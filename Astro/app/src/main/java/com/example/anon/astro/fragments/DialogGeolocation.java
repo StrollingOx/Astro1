@@ -1,8 +1,12 @@
 package com.example.anon.astro.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
@@ -12,12 +16,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.anon.astro.Localization;
+import com.example.anon.astro.MainActivity;
 import com.example.anon.astro.R;
+import com.example.anon.astro.weather.CityWeatherController;
+import com.example.anon.astro.weather.components.City;
 
 public class DialogGeolocation extends AppCompatDialogFragment {
+    private CityWeatherController cityWeatherController;
     private EditText mLongitude, mLatitude;
     private View view;
     private String valueLongitude, valueLatitude;
+    private SharedPreferences preferences;
 
     @NonNull
     @Override
@@ -64,11 +73,19 @@ public class DialogGeolocation extends AppCompatDialogFragment {
                             Localization.setLatitude(Double.parseDouble(valueLatitude));
                             Localization.setLongitude(Double.parseDouble(valueLongitude));
                             Toast.makeText(getActivity(), "Geolocation changed successfully", Toast.LENGTH_SHORT).show();
+                            function();
                         }else {Toast.makeText(getActivity(), "Geolocation did not change!", Toast.LENGTH_SHORT).show();}
 
                     }
                 });
         return builder.create();
+    }
+
+    private void function() {
+        String cityFound = cityWeatherController.getCityNameByGeolocation(Double.parseDouble(valueLatitude), Double.parseDouble(valueLongitude));
+        preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        preferences.edit().putString("lastcity", cityFound).apply();
+        cityWeatherController.addCityByName(cityFound);
     }
 
     private void initDialog() {
@@ -77,5 +94,7 @@ public class DialogGeolocation extends AppCompatDialogFragment {
 
         mLongitude = view.findViewById(R.id.dialog_geolocation_longitude);
         mLatitude = view.findViewById(R.id.dialog_geolocation_latitude);
+
+        cityWeatherController = CityWeatherController.getInstance();
     }
 }

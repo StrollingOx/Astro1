@@ -1,16 +1,19 @@
 package com.example.anon.astro.weather;
 
 import android.content.Context;
+import android.database.CursorIndexOutOfBoundsException;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.anon.astro.exceptions.AlreadyInDatabaseException;
 import com.example.anon.astro.tools.CitySerializer;
+import com.example.anon.astro.weather.components.CityByGeoloc;
 import com.example.anon.astro.weather.components.FiveDayForecast;
 
 import java.util.List;
 
 public class CityWeatherController {
+    private static CityWeatherController INSTANCE;
 
     private Context context;
     private CityWeatherAPIConnection apiConnection;
@@ -32,7 +35,13 @@ public class CityWeatherController {
         }catch(Exception e){
             Log.d("Info", "Loading data from local database!");
             Toast.makeText(context, "Connection issue. Loading from database...", Toast.LENGTH_SHORT).show();
-            return CitySerializer.cityDeserializer(databaseConnection.getWeatherForCity(cityName));
+            try {
+                return CitySerializer.cityDeserializer(databaseConnection.getWeatherForCity(cityName));
+            }catch(CursorIndexOutOfBoundsException ex)
+            {
+                Toast.makeText(context, "No items in database", Toast.LENGTH_SHORT).show();
+                return null;
+            }
         }
     }
 
@@ -45,7 +54,12 @@ public class CityWeatherController {
         }catch(Exception e){
             Log.d("Info", "Loading data from local database!");
             Toast.makeText(context, "Connection issue. Loading from database...", Toast.LENGTH_SHORT).show();
-            return CitySerializer.cityFiveDaysDeserializer(databaseConnection.getForecastForCity(cityName));
+            try {
+                return CitySerializer.cityFiveDaysDeserializer(databaseConnection.getForecastForCity(cityName));
+            }catch(CursorIndexOutOfBoundsException ex) {
+            Toast.makeText(context, "No items in database", Toast.LENGTH_SHORT).show();
+            return null;
+        }
         }
     }
 
@@ -67,8 +81,24 @@ public class CityWeatherController {
             Log.d("Info", CitySerializer.cityNameSerializer(json) + "already in database");
         }
     }
-    ///////////////////////////
-    ///////////////////////////
+
+    public String getCityNameByGeolocation(Double lat, Double lon) {
+        String geoloc = lat + ";" + lon;
+        String cityName = "";
+        String json = null;
+        try {
+            json = apiConnection.getCityNameByGeolocation(geoloc);
+            System.out.println(json);
+            cityName = CitySerializer.cityNameSerializer2(json);
+            Log.d("CityWeatherController", "City found: " + cityName);
+            return cityName;
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+            //Toast.makeText(context, "CITY NOT FOUND!", Toast.LENGTH_SHORT).show();
+            //return null;
+        }
+    }
 
     public List<String> getCitiesList() {
         updateCityList();
@@ -81,11 +111,15 @@ public class CityWeatherController {
     }
 
     public void setCityEntity(){
-        cities = databaseConnection.getCities();
+        try {
+            cities = databaseConnection.getCities();
+        }catch(CursorIndexOutOfBoundsException e)
+        {
+            cities = null;
+        }
     }
 
     public boolean updateData() {
-        String cityName = "";
         for (String s : cities) {
             try {
                 databaseConnection.updateWeather(s, apiConnection.getTodayWeatherByCityName(s),apiConnection.getFiveDaysWeatherByCityName(s));
@@ -97,8 +131,20 @@ public class CityWeatherController {
     }
 
     private void updateCityList() {
-        cities.clear();
-        cities.addAll(databaseConnection.getCities());
+        if(cities != null){
+            cities.clear();
+            cities.addAll(databaseConnection.getCities());
+        }
+    }
+
+    public static CityWeatherController getInstance(Context context) {
+        if (INSTANCE == null)
+            INSTANCE = new CityWeatherController(context);
+        return INSTANCE;
+    }
+
+    public static CityWeatherController getInstance() {
+        return INSTANCE;
     }
 
 }

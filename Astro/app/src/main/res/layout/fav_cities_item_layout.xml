@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/layout_item_favcity"
+    android:id="@+id/fc_item_cardview"
     android:layout_marginBottom="4dp"
     app:cardCornerRadius="8dp">
 

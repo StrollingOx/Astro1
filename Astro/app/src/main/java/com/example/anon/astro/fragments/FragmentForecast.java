@@ -48,6 +48,7 @@ public class FragmentForecast extends Fragment {
         List<FiveDaysEntity> fiveDaysEntities = new ArrayList<>();
         String date = null, description = null;
         Double temp = null, pressure = null, speed = null;
+        if(fiveDayForecast == null) return fiveDaysEntities;
         for (int i = 3; i < fiveDayForecast.getList().size(); i += 8) {
             date = fiveDayForecast.getList().get(i).getDtTxt();
             description = fiveDayForecast.getList().get(i).getWeather().get(0).getDescription();

@@ -18,6 +18,7 @@ public class NetworkConnector extends AsyncTask<Object,Void,String> {
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36";
     private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather";
     private static final String API_URL2 = "https://api.openweathermap.org/data/2.5/forecast";
+    private static final String API_URL3 = "https://api.openweathermap.org/data/2.5/find";
     private static final String API_KEY = "0fac6356477877ad06c3e7c7f8c192ed";
 
     @Override
@@ -58,12 +59,14 @@ public class NetworkConnector extends AsyncTask<Object,Void,String> {
         final String APPID = "&appid=";
         final String LATITUDE = "?lat=";
         final String LONGITUDE = "&lon=";
+        final String CNT = "&cnt=1";
 
         if(operation == USING_CITY_NAME){
             return new URL(API_URL + CITY + value + APPID + API_KEY);
         }else if(operation == USING_COORDINATES){
+            System.out.println("STRING: " + value);
             String[] coordinates = value.split(";");
-            return new URL(API_URL + LATITUDE + coordinates[0] + LONGITUDE + coordinates[1] + APPID + API_KEY);
+            return new URL(API_URL3 + LATITUDE + coordinates[0] + LONGITUDE + coordinates[1] + CNT + APPID + API_KEY);
         }
         return new URL(API_URL2 + CITY + value + APPID + API_KEY);
     }

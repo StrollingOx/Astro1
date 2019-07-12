@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity{
     //TODO: forecast
     //TODO: tablet layout
 
-
+    private int flag_connection = 0;
     private PagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
 
@@ -50,12 +50,19 @@ public class MainActivity extends AppCompatActivity{
         loadDefaultCity();
 
         //loadLastCity
-        String city = preferences.getString("lastcity","Warsaw");
+        String city = preferences.getString("lastcity","Zgierz");
         cityWeather = cityWeatherController.getCurrentCityWeather(city);
         fiveDayForecast = cityWeatherController.getCurrentCityForecast(city);
 
-        Localization.setLatitude(cityWeather.getCoord().getLat());
-        Localization.setLongitude(cityWeather.getCoord().getLon());
+        try {
+            Localization.setLatitude(cityWeather.getCoord().getLat());
+            Localization.setLongitude(cityWeather.getCoord().getLon());
+        }catch(NullPointerException e)
+        {
+            Localization.setLatitude(0.0);
+            Localization.setLongitude(0.0);
+            flag_connection = 1;
+        }
 
         FragmentBasicData.setCityWeather(cityWeather);
         FragmentAdditionalData.setCityWeather(cityWeather);
@@ -75,7 +82,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void initWeatherController() {
-        cityWeatherController = new CityWeatherController(this);
+        cityWeatherController = CityWeatherController.getInstance(getBaseContext());
     }
 
     private void initToolbar() {
@@ -112,12 +119,26 @@ public class MainActivity extends AppCompatActivity{
                 refreshWeatherData();
                 return true;
             case R.id.setting_select_city:
-                openSelectCity();
+                if(flag_connection != 1)
+                    openSelectCity();
+                else
+                    Toast.makeText(this, "NO INTERNET CONNECTION", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.setting_change_unit:
+                changeUnits();
                 return true;
             default:
                 return false;
         }
     }
+
+    private void changeUnits() {
+        if(preferences.getString("units", "0").equals("0")){
+            preferences.edit().putString("units","1").apply();
+        }else if(preferences.getString("units", "0").equals("1")){
+            preferences.edit().putString("units","0").apply();
+        }
+}
 
     private void openSelectCity() {
         Intent myIntent = new Intent(this, SelectCityActivity.class);
@@ -125,7 +146,21 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void refreshWeatherData() {
-        Toast.makeText(this,"NOT YET IMPLEMENTED", Toast.LENGTH_SHORT).show();
+        cityWeatherController.updateData();
+
+        String city = preferences.getString("lastcity","Zgierz");
+        cityWeather = cityWeatherController.getCurrentCityWeather(city);
+        fiveDayForecast = cityWeatherController.getCurrentCityForecast(city);
+
+        Localization.setLatitude(cityWeather.getCoord().getLat());
+        Localization.setLongitude(cityWeather.getCoord().getLon());
+
+        FragmentBasicData.setCityWeather(cityWeather);
+        FragmentAdditionalData.setCityWeather(cityWeather);
+        FragmentForecast.setFiveDayForecast(fiveDayForecast);
+
+        Toast.makeText(getBaseContext(), "The weather has been updated!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"NOT YET IMPLEMENTED", Toast.LENGTH_SHORT).show();
     }
 
 

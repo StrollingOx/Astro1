@@ -18,4 +18,8 @@
         android:id="@+id/setting_select_city"
         android:title="Select city"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/setting_change_unit"
+        android:title="Change units"
+        app:showAsAction="never" />
 </menu>
